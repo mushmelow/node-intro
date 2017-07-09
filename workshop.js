@@ -71,10 +71,10 @@ function getDistanceFromIss(address) {
   return Promise.all(
   [
     getIssPosition(),
-    getAddressPosition(addressGoogle)
+    getAddressPosition(address)
   ])
-  .then(values => {
-    return getDistance(values[0], values[1]);
+  .then(positions => {
+    return getDistance(positions[0], positions[1]);
   }).catch(err => {
     console.log(err);
   });
