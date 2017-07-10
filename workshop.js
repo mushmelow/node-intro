@@ -7,6 +7,7 @@ function getDistance(pos1, pos2) {
 
 function getIssPosition() {
   const option= {
+    
     uri: "http://api.open-notify.org/iss-now.json",
     headers: {
       'User-Agent': 'Request-Promise'
@@ -20,7 +21,8 @@ function getIssPosition() {
       console.log(option);
       
       
-      return {
+      return {   
+        //when you have many object you want to return open bracket {store obj in a variable "var:"} 
         lat:response.iss_position.latitude,
         lng:response.iss_position.longitude
          // Parse as JSON
@@ -55,6 +57,7 @@ function getAddressPosition(address) {
   .then(
     
     function(response) {
+      // exemple of returning only one object
     return response.results[0].geometry.location;
     })
       
@@ -152,3 +155,28 @@ function getDistanceFromIss(address) {
 getDistanceFromIss("1600+Amphitheatre+Parkway,+Mountain+View,+CA").then(function (response){
   console.log(response);
    });
+   
+   
+   
+//// proper way to chain promises
+
+
+//   function logNumber(n) {
+//   if (n < 10) {
+
+//     console.log('making request to google');
+//     rp('http://www.google.com')
+//     .then(function() {
+//       console.log('request successful');
+//     })
+//     .catch(function() {
+//       console.log('request unsuccessful');
+//     })
+//     .then(function() {
+//       console.log('firing request ' + (n + 1))
+//       logNumber(n + 1);
+//     })
+//   }
+// }
+
+// logNumber(0);
